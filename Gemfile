@@ -33,7 +33,8 @@ gem 'redis', '~> 4.0'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
-
+gem 'haml'
+gem "haml-rails", "~> 2.0"
 gem 'mysql2'
 gem 'jquery-rails'
 gem 'bootstrap', '~> 4.3.1'
