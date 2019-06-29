@@ -10,24 +10,20 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    
+
     / Navigation
     %nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
       .container
-        %a.navbar-brand{href: "#"} Start Bootstrap
+        = link_to t('application_name'), root_path, class: 'navbar-brand'
         %button.navbar-toggler{"aria-controls" => "navbarResponsive", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarResponsive", "data-toggle" => "collapse", type: "button"}
           %span.navbar-toggler-icon
         #navbarResponsive.collapse.navbar-collapse
           %ul.navbar-nav.ml-auto
-            %li.nav-item.active
-              %a.nav-link{href: "#"}
-                Home
-                %span.sr-only (current)
+            = content_tag :li, class: "nav-item #{params[:controller] == "boards" ? 'active' : ''}" do
+              = link_to boards_path, class: 'nav-link' do
+                = t('menu.boards')
+                = content_tag(:span, '(current)', class: 'sr-only') if params[:controller] == "boards"
             %li.nav-item
-              %a.nav-link{href: "#"} About
-            %li.nav-item
-              %a.nav-link{href: "#"} Services
-            %li.nav-item
-              %a.nav-link{href: "#"} Contact
+              = link_to t('menu.contact'), 'mailto:rodrigo@rtoledo.inf.br', class: 'nav-link'
     = yield
     - console
