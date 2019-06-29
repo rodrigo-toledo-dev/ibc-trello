@@ -17,4 +17,6 @@ test:
 
 production:
   <<: *default
+  adapter: postgresql
+  encoding: unicode
   database: ibc_trello_production
