@@ -11,5 +11,18 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe BoardsHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  describe "board front image situations" do
+    let!(:simple_board) { create(:board) }
+    let!(:full_board) { create(:board, :with_image) }
+    it "should return default image url" do
+      expect(board_front_image_url(simple_board)).to eq('http://placehold.it/500x325')
+    end
+
+    it "should not return default image url" do
+      expect(board_front_image_url(full_board)).not_to eq('http://placehold.it/500x325')
+    end
+
+  end
+
 end

@@ -10,10 +10,10 @@
       %h4=t('menu.boards')
   / Page Features
   .row.text-center
-    - 12.times.each do
+    - @boards.each do |board|
       .col-lg-3.col-md-6.mb-4
         .card.h-100
-          %img.card-img-top{alt: "", src: "http://placehold.it/500x325"}/
+          =image_tag(board_front_image_url(board), alt: board.name, class: 'card-img-top')
           .card-body
             %h6.card-title
               =Faker::Job.key_skill
