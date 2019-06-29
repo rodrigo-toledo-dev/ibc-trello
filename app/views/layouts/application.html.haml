@@ -1,12 +1,35 @@
 !!!
-%html
+%html{lang: "en"}
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title IbcTrello
+    %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{charset: "utf-8"}/
+    %meta{content: "width=device-width, initial-scale=1, shrink-to-fit=no", name: "viewport"}/
+    %title= t('application_name')
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
+
+    / Navigation
+    %nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
+      .container
+        = link_to t('application_name'), root_path, class: 'navbar-brand'
+        %button.navbar-toggler{"aria-controls" => "navbarResponsive", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarResponsive", "data-toggle" => "collapse", type: "button"}
+          %span.navbar-toggler-icon
+        #navbarResponsive.collapse.navbar-collapse
+          %ul.navbar-nav.ml-auto
+            %li.nav-item
+              =form_tag boards_path, method: :get do
+                .input-group
+                  = text_field_tag :q, '', class: 'form-control ', placeholder: 'Procurando um quadro?...'
+                  .input-group-append
+                    = submit_tag 'Buscar', class: 'btn btn-outline-light'
+            = content_tag :li, class: "nav-item #{params[:controller] == "boards" ? 'active' : ''}" do
+              = link_to boards_path, class: 'nav-link' do
+                = t('menu.boards')
+                = content_tag(:span, '(current)', class: 'sr-only') if params[:controller] == "boards"
+            %li.nav-item
+              = link_to t('menu.contact'), 'mailto:rodrigo@rtoledo.inf.br', class: 'nav-link'
     = yield
     - console
