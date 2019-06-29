@@ -26,7 +26,7 @@ gem 'redis', '~> 4.0'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use ActiveStorage variant
-# gem 'mini_magick', '~> 4.8'
+gem 'mini_magick', '~> 4.8'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -40,6 +40,7 @@ gem 'pg'
 gem 'jquery-rails'
 gem 'bootstrap', '~> 4.3.1'
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
+gem 'friendly_id', '~> 5.2.4'
 group :development, :test do
   gem 'rspec-rails', '~> 3.8'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

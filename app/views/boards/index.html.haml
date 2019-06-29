@@ -1,28 +1,19 @@
-/ Page Content
-#master_container.container
-  / Jumbotron Header
-  %header.jumbotron.my-4
-    %h1.display-3 Bem vindo(a) ao IBC Trello
-    %p.lead Você precisa se organizar? Sua empresa, pessoal, estudos? Tarefas nunca ficarão tão em dia...
-    = render 'form'
-  .row
-    .col-lg-12
-      %h4=t('menu.boards')
-  / Page Features
-  .row.text-center
-    - 12.times.each do
-      .col-lg-3.col-md-6.mb-4
-        .card.h-100
-          %img.card-img-top{alt: "", src: "http://placehold.it/500x325"}/
-          .card-body
-            %h6.card-title
-              =Faker::Job.key_skill
-          .card-footer
-            %a.btn.btn-secondary.btn-sm{href: "#"} Mais informações
-  / /.row
-/ /.container
-/ Footer
-%footer.py-5.bg-dark
-  .container
-    %p.m-0.text-center.text-white
-      ="Copyright © #{t('application_name')} #{Date.today.year}"
+%header.jumbotron.my-4
+  %h1.display-3 Bem vindo(a) ao IBC Trello
+  %p.lead Você precisa se organizar? Sua empresa, pessoal, estudos? Tarefas nunca ficarão tão em dia...
+  = render 'form'
+.row
+  .col-lg-12
+    %h4=t('menu.boards')
+/ Page Features
+.row.text-center
+  - @boards.each do |board|
+    .col-lg-3.col-md-6.mb-4
+      .card.h-100
+        =image_tag(board_front_image_url(board), alt: board.name, class: 'card-img-top')
+        .card-body
+          %h6.card-title
+            = board.name
+        .card-footer
+          =link_to t('.more_informations'), board, class: 'btn btn-secondary btn-sm'
+

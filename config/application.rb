@@ -15,3 +15,4 @@ module IbcTrello
     config.i18n.default_locale = :'pt-BR'
   end
 end
+
