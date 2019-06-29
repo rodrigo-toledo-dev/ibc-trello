@@ -119,6 +119,8 @@ GEM
     ffi (1.11.1-x64-mingw32)
     ffi (1.11.1-x86-mingw32)
     formatador (0.2.5)
+    friendly_id (5.2.5)
+      activerecord (>= 4.0.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     guard (2.15.0)
@@ -402,6 +404,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   factory_bot_rails
   faker!
+  friendly_id (~> 5.2.4)
   guard
   guard-bundler
   guard-livereload (~> 2.5)

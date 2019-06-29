@@ -18,6 +18,7 @@
         %button.navbar-toggler{"aria-controls" => "navbarResponsive", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarResponsive", "data-toggle" => "collapse", type: "button"}
           %span.navbar-toggler-icon
         #navbarResponsive.collapse.navbar-collapse
+
           %ul.navbar-nav.ml-auto
             %li.nav-item
               =form_tag boards_path, method: :get do
@@ -31,4 +32,10 @@
                 = content_tag(:span, '(current)', class: 'sr-only') if params[:controller] == "boards"
             %li.nav-item
               = link_to t('menu.contact'), 'mailto:rodrigo@rtoledo.inf.br', class: 'nav-link'
-    = yield
+    #master_container.container
+      = flash_messages
+      = yield
+    %footer.py-5.bg-dark
+      .container
+        %p.m-0.text-center.text-white
+          ="Copyright © #{t('application_name')} #{Date.today.year}"
