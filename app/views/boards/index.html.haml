@@ -1,44 +1,30 @@
 / Page Content
-.container
+#master_container.container
   / Jumbotron Header
   %header.jumbotron.my-4
-    %h1.display-3 A Warm Welcome!
-    %p.lead Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.
-    %a.btn.btn-primary.btn-lg{href: "#"} Call to action!
+    %h1.display-3 Bem vindo(a) ao IBC Trello
+    %p.lead Você precisa se organizar? Sua empresa, pessoal, estudos? Tarefas nunca ficarão tão em dia...
+    =form_for :jobs do |f|
+      .form-group.row
+        =f.label :name, class: 'col-sm-2 col-form-label'
+        .col-sm-10
+          =f.text_field :name, class: 'form-control', placeholder: 'Nome do quadro...'
+      .form-group.row
+        .col-sm-10
+          =f.submit t('actions.create'), class: 'btn btn-primary'
+  .row
+    .col-lg-12
+      %h4=t('menu.boards')
   / Page Features
   .row.text-center
-    .col-lg-3.col-md-6.mb-4
-      .card.h-100
-        %img.card-img-top{alt: "", src: "http://placehold.it/500x325"}/
-        .card-body
-          %h4.card-title Card title
-          %p.card-text Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.
-        .card-footer
-          %a.btn.btn-primary{href: "#"} Find Out More!
-    .col-lg-3.col-md-6.mb-4
-      .card.h-100
-        %img.card-img-top{alt: "", src: "http://placehold.it/500x325"}/
-        .card-body
-          %h4.card-title Card title
-          %p.card-text Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo magni sapiente, tempore debitis beatae culpa natus architecto.
-        .card-footer
-          %a.btn.btn-primary{href: "#"} Find Out More!
-    .col-lg-3.col-md-6.mb-4
-      .card.h-100
-        %img.card-img-top{alt: "", src: "http://placehold.it/500x325"}/
-        .card-body
-          %h4.card-title Card title
-          %p.card-text Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.
-        .card-footer
-          %a.btn.btn-primary{href: "#"} Find Out More!
-    .col-lg-3.col-md-6.mb-4
-      .card.h-100
-        %img.card-img-top{alt: "", src: "http://placehold.it/500x325"}/
-        .card-body
-          %h4.card-title Card title
-          %p.card-text Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo magni sapiente, tempore debitis beatae culpa natus architecto.
-        .card-footer
-          %a.btn.btn-primary{href: "#"} Find Out More!
+    - 12.times.each do
+      .col-lg-3.col-md-6.mb-4
+        .card.h-100
+          %img.card-img-top{alt: "", src: "http://placehold.it/500x325"}/
+          .card-body
+            %h4.card-title Card title
+          .card-footer
+            %a.btn.btn-primary{href: "#"} Find Out More!
   / /.row
 / /.container
 / Footer
