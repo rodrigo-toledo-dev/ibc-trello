@@ -19,4 +19,6 @@ production:
   <<: *default
   adapter: postgresql
   encoding: unicode
+  username: ibc-trello
   database: ibc_trello_production
+  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>

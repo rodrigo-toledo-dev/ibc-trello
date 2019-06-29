@@ -52,7 +52,6 @@ pickle-email-*.html
 
 # Configuration files
 config/app_config.yml
-# config/database.yml
 config/application.yml
 config/mandrill.yml
 config/paperclip.yml
