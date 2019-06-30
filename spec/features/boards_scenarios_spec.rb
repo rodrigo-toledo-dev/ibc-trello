@@ -12,6 +12,7 @@ RSpec.feature "Boards Scenarios", :type => :feature do
     scenario "without filter" do
       expect(page).to have_selector('h6.card-title', count: 12)
       expect(page).to have_selector("img[src='http://placehold.it/500x325']", count: 6)
+      expect(page).to have_text('12 Quadro(s) encontrado(s)')
     end
 
     scenario "with filter" do
@@ -19,6 +20,7 @@ RSpec.feature "Boards Scenarios", :type => :feature do
       click_on 'Buscar'
       expect(page).to have_selector('h6.card-title', count: 1)
       expect(page).to have_selector("img[src='http://placehold.it/500x325']", count: 1)
+      expect(page).to have_text('1 Quadro(s) encontrado(s)')
     end
   end
 
