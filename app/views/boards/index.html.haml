@@ -4,7 +4,7 @@
   = render 'form'
 .row
   .col-lg-12
-    %h4=t('menu.boards')
+    %h4="#{@boards.count} Quadro(s) encontrado(s)"
 / Page Features
 .row.text-center
   - @boards.each do |board|
