@@ -1,8 +1,6 @@
 require "rails_helper"
 
-RSpec.feature "Boards Widgets Scenarios", :type => :feature do
-
-
+RSpec.feature "Boards Save Scenarios", :type => :feature do
   describe "User creating boards" do
     before do
       visit root_path

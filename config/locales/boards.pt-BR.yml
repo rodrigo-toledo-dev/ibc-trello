@@ -1,4 +1,5 @@
 pt-BR:
   boards:
     index:
-      more_informations: Mais informações
+      informations: Informações
+      destroy: Remover
