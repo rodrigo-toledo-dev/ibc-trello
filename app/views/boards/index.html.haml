@@ -15,5 +15,7 @@
           %h6.card-title
             = board.name
         .card-footer
-          =link_to t('.more_informations'), root_path(id: board), class: 'btn btn-secondary btn-sm'
+          .btn-group{"aria-label" => "Ações para #{board.name}", role: "group"}
+            =link_to t('.informations'), root_path(id: board), class: 'btn btn-secondary btn-sm'
+            =link_to t('.destroy'), board_path(board), method: :delete, data: {confirm: 'Deseja avançar com esta operação? Todas as dependências serão removidas.'}, class: 'btn btn-dark btn-sm'
 

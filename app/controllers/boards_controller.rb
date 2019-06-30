@@ -25,6 +25,16 @@ class BoardsController < ApplicationController
     redirect_to root_path
   end
 
+  def destroy
+    @board = Board.friendly.find(params[:id])
+    if @board.destroy
+      flash[:success] = 'Quadro removido com sucesso'
+    else
+      flash[:error] = "Erro ao remover este Quadro"
+    end
+    redirect_to root_path
+  end
+
   protected
 
   def board_params
