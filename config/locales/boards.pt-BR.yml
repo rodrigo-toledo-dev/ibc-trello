@@ -3,3 +3,5 @@ pt-BR:
     index:
       informations: Informações
       destroy: Remover
+    show:
+      board_name: 'Informações e Planejamento do Quadro: %{name}'

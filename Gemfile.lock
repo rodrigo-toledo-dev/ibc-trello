@@ -118,6 +118,8 @@ GEM
     ffi (1.11.1-java)
     ffi (1.11.1-x64-mingw32)
     ffi (1.11.1-x86-mingw32)
+    font-awesome-sass (5.8.1)
+      sassc (>= 1.11)
     formatador (0.2.5)
     friendly_id (5.2.5)
       activerecord (>= 4.0.0)
@@ -409,6 +411,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   factory_bot_rails
   faker!
+  font-awesome-sass (~> 5.8.1)
   friendly_id (~> 5.2.4)
   guard
   guard-bundler
