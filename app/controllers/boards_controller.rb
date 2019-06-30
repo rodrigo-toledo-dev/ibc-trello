@@ -1,6 +1,9 @@
 class BoardsController < ApplicationController
   def index
-    @boards = Board.order('created_at desc')
+    @q = Board.order('created_at desc').ransack(params[:q])
+    @boards = @q.result(distinct: true)
+    # @boards = Board.order('created_at desc')
+    # @boards = @boards.where('name ILIKE ?',"%#{params[:q]}%") unless params[:q].blank?
     @board = Board.new
   end
 
