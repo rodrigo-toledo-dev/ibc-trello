@@ -1,10 +1,8 @@
 %header.jumbotron.my-4
-  %h4
-    = t('.board_name', name: @board.name)
+  %h4= t('.board_name', name: @board.name)
   = render 'form'
-.row
-  .col-lg-12
-    %h4 Planejamento
+%header.jumbotron.my-4
+  %h4 Planejamento
 / Page Features
 .row.text-center
   - 4.times.each do
