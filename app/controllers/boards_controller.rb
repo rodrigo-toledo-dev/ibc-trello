@@ -1,6 +1,5 @@
 class BoardsController < ApplicationController
   def index
-    @q = Board.order('created_at desc').ransack(params[:q])
     @boards = @q.result(distinct: true)
     @board = params[:id].blank? ? Board.new : Board.friendly.find(params[:id])
   end
@@ -15,6 +14,10 @@ class BoardsController < ApplicationController
     redirect_to root_path
   end
 
+  def show
+    @board = Board.friendly.find(params[:id])
+  end
+
   def update
     @board = Board.friendly.find(params[:id])
     if @board.update_attributes(board_params)
@@ -22,7 +25,7 @@ class BoardsController < ApplicationController
     else
       flash[:error] = "Erro ao atualizar este Quadro, verifique os alertas: #{@board.errors.full_messages.to_sentence}"
     end
-    redirect_to root_path
+    redirect_to board_path(@board)
   end
 
   def destroy
