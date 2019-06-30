@@ -2,20 +2,27 @@ require "rails_helper"
 
 RSpec.feature "Boards Scenarios", :type => :feature do
   before do
-    create_list(:board, 6)
+    create(:board, name: 'Atividades extras RTOLEDO')
+    create_list(:board, 5)
     create_list(:board, 6, :with_image)
+    visit root_path
   end
 
-  scenario "User see boards widgets in the screen" do
-    visit root_path
-    expect(page).to have_selector('h6.card-title', count: 12)
-    expect(page).to have_selector("img[src='http://placehold.it/500x325']", count: 6)
+  describe "User see boards widgets in the screen" do
+    scenario "without filter" do
+      expect(page).to have_selector('h6.card-title', count: 12)
+      expect(page).to have_selector("img[src='http://placehold.it/500x325']", count: 6)
+    end
+
+    scenario "with filter" do
+      fill_in "Procurando um quadro?...",	with: "Extras RT"
+      click_on 'Buscar'
+      expect(page).to have_selector('h6.card-title', count: 1)
+      expect(page).to have_selector("img[src='http://placehold.it/500x325']", count: 1)
+    end
   end
 
   describe "User creating boards" do
-    before do
-      visit root_path
-    end
     scenario "with error" do
       click_on "Criar"
       expect(page).to have_text('Erro ao criar este Quadro, verifique os alertas: Nome do Quadro não pode ficar em branco')

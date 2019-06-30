@@ -21,11 +21,11 @@
 
           %ul.navbar-nav.ml-auto
             %li.nav-item
-              =form_tag boards_path, method: :get do
+              = search_form_for @q do |f|
                 .input-group
-                  = text_field_tag :q, '', class: 'form-control ', placeholder: 'Procurando um quadro?...'
+                  = f.search_field :name_cont, class: 'form-control ', placeholder: 'Procurando um quadro?...'
                   .input-group-append
-                    = submit_tag 'Buscar', class: 'btn btn-outline-light'
+                    = f.submit 'Buscar', class: 'btn btn-outline-light'
             = content_tag :li, class: "nav-item #{params[:controller] == "boards" ? 'active' : ''}" do
               = link_to boards_path, class: 'nav-link' do
                 = t('menu.boards')
