@@ -2,9 +2,7 @@ class BoardsController < ApplicationController
   def index
     @q = Board.order('created_at desc').ransack(params[:q])
     @boards = @q.result(distinct: true)
-    # @boards = Board.order('created_at desc')
-    # @boards = @boards.where('name ILIKE ?',"%#{params[:q]}%") unless params[:q].blank?
-    @board = Board.new
+    @board = params[:id].blank? ? Board.new : Board.friendly.find(params[:id])
   end
 
   def create
@@ -14,7 +12,17 @@ class BoardsController < ApplicationController
     else
       flash[:error] = "Erro ao criar este Quadro, verifique os alertas: #{@board.errors.full_messages.to_sentence}"
     end
-    redirect_to boards_path
+    redirect_to root_path
+  end
+
+  def update
+    @board = Board.friendly.find(params[:id])
+    if @board.update_attributes(board_params)
+      flash[:success] = 'Quadro atualizado com sucesso'
+    else
+      flash[:error] = "Erro ao atualizar este Quadro, verifique os alertas: #{@board.errors.full_messages.to_sentence}"
+    end
+    redirect_to root_path
   end
 
   protected
