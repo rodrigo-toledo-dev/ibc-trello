@@ -1,32 +1,32 @@
 %header.jumbotron.my-4
   %h4= t('.board_name', name: @board.name)
   = render 'form'
-%header.jumbotron.my-4
-  %h4 Planejamento
+.row
+  .col-lg-6
+    %header.jumbotron.my-4
+      %h6 Criar Etapa (será adicionada ao final do Quadro)
+      = form_for @new_step do |step_form_create|
+        = step_form_create.hidden_field :board_id
+        .form-group.row
+          = step_form_create.label :name, class: 'col-sm-4 col-form-label'
+          .col-sm-8
+            = step_form_create.text_field :name, class: 'form-control'
+        .form-group.row
+          .col-sm-12
+            = step_form_create.submit t('actions.save'), class: 'btn btn-secondary btn-sm'
+  .col-lg-6
+    %header.jumbotron.my-4
+      %h6 Criar Tarefa (será adicionada na primeira Etapa do Quadro)
+      = form_for @new_task do |task_form_create|
+        = task_form_create.hidden_field :board_id
+        .form-group.row
+          = task_form_create.label :name, class: 'col-sm-4 col-form-label'
+          .col-sm-8
+            = task_form_create.text_field :name, class: 'form-control'
+        .form-group.row
+          .col-sm-12
+            = task_form_create.submit t('actions.save'), class: 'btn btn-secondary btn-sm'
 / Page Features
 .row.text-center
-  - 4.times.each do
-    .col-lg-3.col-md-6.mb-4
-      .card.h-100
-        .card-body
-          %h6.card-title{style: 'margin-bottom: 0'}
-            .row
-              .input-group.input-group-sm
-                .input-group-prepend
-                  .input-group-text Etapa
-                =text_field_tag :step_name, Faker::Verb.past, class: 'form-control'
-            .row{style: 'margin-top: 10px'}
-              .col-lg-12
-                .btn-group
-                  = submit_tag 'Salvar', class: 'btn btn-secondary btn-sm'
-                  = submit_tag 'Remover', class: 'btn btn-secondary btn-sm'
-        - 6.times.each do
-          .card-footer
-            .row
-              = text_field_tag :card_name, Faker::Verb.past, class: 'form-control form-control-sm', placeholder: 'Atividade a ser Feita'
-            .btn-group{"aria-label" => "Ações para #{Faker::Verb.past}", role: "group", style: "margin-top:10px"}
-              =link_to icon('fas', 'caret-square-left'), '#', class: 'btn btn-dark btn-sm'
-              =link_to 'Salvar', '#', class: 'btn btn-secondary btn-sm'
-              =link_to 'Remover', '#', class: 'btn btn-secondary btn-sm'
-              =link_to icon('fas', 'caret-square-right'), '#', class: 'btn btn-dark btn-sm'
-
+  - @board.steps.each do |step|
+    = render partial: 'steps/form', locals: {step: step} unless step.new_record?

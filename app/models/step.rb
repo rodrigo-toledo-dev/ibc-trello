@@ -1,7 +1,7 @@
-class Board < ApplicationRecord
+class Step < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: :slugged
-  has_one_attached :front_image
+  belongs_to :board
+
   validates :name, presence: true
-  has_many :steps
 end
