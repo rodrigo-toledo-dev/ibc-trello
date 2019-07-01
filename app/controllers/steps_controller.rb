@@ -16,7 +16,7 @@ class StepsController < ApplicationController
     else
       flash[:error] = "Erro ao remover esta Etapa"
     end
-    redirect_to root_path
+    redirect_to board_path(@step.board)
   end
 
   protected
