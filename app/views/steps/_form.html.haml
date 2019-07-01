@@ -1,0 +1,25 @@
+.col-lg-3.col-md-6.mb-4
+  .card.h-100
+    .card-body
+      %h6.card-title{style: 'margin-bottom: 0'}
+      = form_for step do |step_form|
+        .row
+          .input-group.input-group-sm
+            .input-group-prepend
+              .input-group-text Etapa
+            = step_form.text_field :name, class: 'form-control'
+        .row{style: 'margin-top: 10px'}
+          .col-lg-12
+            .btn-group
+              = submit_tag 'Salvar', class: 'btn btn-secondary btn-sm'
+              = link_to 'Remover', step_path(step), method: :delete, data: {confirm: 'Deseja avançar com esta operação? Todas as dependências serão removidas.'}, class: 'btn btn-secondary btn-sm'
+    - 6.times.each do
+      .card-footer
+        .row
+          = text_field_tag :card_name, Faker::Verb.past, class: 'form-control form-control-sm', placeholder: 'Atividade a ser Feita'
+        .btn-group{"aria-label" => "Ações para #{Faker::Verb.past}", role: "group", style: "margin-top:10px"}
+          =link_to icon('fas', 'caret-square-left'), '#', class: 'btn btn-dark btn-sm'
+          =link_to 'Salvar', '#', class: 'btn btn-secondary btn-sm'
+          =link_to 'Remover', '#', class: 'btn btn-secondary btn-sm'
+          =link_to icon('fas', 'caret-square-right'), '#', class: 'btn btn-dark btn-sm'
+
