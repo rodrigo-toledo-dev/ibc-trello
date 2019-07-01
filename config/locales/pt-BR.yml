@@ -12,12 +12,15 @@ pt-BR:
     models:
         board: Quadro
         step: Etapa
+        task: Tarefa
     attributes:
       board:
         name: Nome do Quadro
         front_image: Imagem de Capa
       step:
         name: Nome da Etapa
+      task:
+        name: Nome da Tarefa
   date:
     abbr_day_names:
     - Dom

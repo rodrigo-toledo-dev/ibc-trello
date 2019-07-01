@@ -1,9 +1,32 @@
 %header.jumbotron.my-4
   %h4= t('.board_name', name: @board.name)
   = render 'form'
-%header.jumbotron.my-4
-  %h4 Planejamento
+.row
+  .col-lg-6
+    %header.jumbotron.my-4
+      %h6 Criar Etapa (será adicionada ao final do Quadro)
+      = form_for @new_step do |step_form_create|
+        = step_form_create.hidden_field :board_id
+        .form-group.row
+          = step_form_create.label :name, class: 'col-sm-4 col-form-label'
+          .col-sm-8
+            = step_form_create.text_field :name, class: 'form-control'
+        .form-group.row
+          .col-sm-12
+            = step_form_create.submit t('actions.save'), class: 'btn btn-secondary btn-sm'
+  .col-lg-6
+    %header.jumbotron.my-4
+      %h6 Criar Tarefa (será adicionada na primeira Etapa do Quadro)
+      = form_for @new_task do |task_form_create|
+        = task_form_create.hidden_field :board_id
+        .form-group.row
+          = task_form_create.label :name, class: 'col-sm-4 col-form-label'
+          .col-sm-8
+            = task_form_create.text_field :name, class: 'form-control'
+        .form-group.row
+          .col-sm-12
+            = task_form_create.submit t('actions.save'), class: 'btn btn-secondary btn-sm'
 / Page Features
 .row.text-center
   - @board.steps.each do |step|
-    = render partial: 'steps/form', locals: {step: step}
+    = render partial: 'steps/form', locals: {step: step} unless step.new_record?

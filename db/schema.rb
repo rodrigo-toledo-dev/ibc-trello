@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_01_200650) do
+ActiveRecord::Schema.define(version: 2019_07_01_224947) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -62,6 +62,17 @@ ActiveRecord::Schema.define(version: 2019_07_01_200650) do
     t.index ["slug"], name: "index_steps_on_slug", unique: true
   end
 
+  create_table "tasks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "step_id"
+    t.string "name"
+    t.string "slug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["slug"], name: "index_tasks_on_slug", unique: true
+    t.index ["step_id"], name: "index_tasks_on_step_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "steps", "boards"
+  add_foreign_key "tasks", "steps"
 end
