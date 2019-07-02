@@ -20,6 +20,24 @@ class TasksController < ApplicationController
     redirect_to board_path(@task.board)
   end
 
+  def move_left
+    @task = Task.friendly.find(params[:id])
+    if @task.can_move_left?
+      @task.move_to_the_left
+      flash[:success] = 'Tarefa atualizada com sucesso'
+    end
+    redirect_to board_path(@task.board)
+  end
+
+  def move_right
+    @task = Task.friendly.find(params[:id])
+    if @task.can_move_right?
+      @task.move_to_the_right
+      flash[:success] = 'Tarefa atualizada com sucesso'
+    end
+    redirect_to board_path(@task.board)
+  end
+
   def destroy
     @task = Task.friendly.find(params[:id])
     if @task.destroy

@@ -3,7 +3,7 @@
     .row
       = task_form_update.text_field :name, class: 'form-control form-control-sm', placeholder: 'Atividade a ser Feita'
     .btn-group{"aria-label" => "Ações para #{task.step.name}", role: "group", style: "margin-top:10px"}
-      = task_go_down task
+      = task_move_left task
       = task_form_update.submit 'Salvar', class: 'btn btn-secondary btn-sm'
       = link_to 'Remover', task, method: :delete, data: {confirm: 'Deseja avançar com esta operação? Todas as dependências serão removidas.'}, class: 'btn btn-secondary btn-sm'
-      = task_go_up task
+      = task_move_right task
