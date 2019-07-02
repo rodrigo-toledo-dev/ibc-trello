@@ -26,7 +26,7 @@ class TasksController < ApplicationController
       @task.move_to_the_left
       flash[:success] = 'Tarefa atualizada com sucesso'
     end
-    redirect_to board_path(@task.board)
+    redirect_to board_path(@task.step.board)
   end
 
   def move_right
@@ -35,7 +35,7 @@ class TasksController < ApplicationController
       @task.move_to_the_right
       flash[:success] = 'Tarefa atualizada com sucesso'
     end
-    redirect_to board_path(@task.board)
+    redirect_to board_path(@task.step.board)
   end
 
   def destroy
