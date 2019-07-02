@@ -11,10 +11,10 @@
         .form-group.row
           = step_form_create.label :name, class: 'col-sm-4 col-form-label'
           .col-sm-8
-            = step_form_create.text_field :name, class: 'form-control'
+            = step_form_create.text_field :name, class: 'form-control', placeholder: 'descreva a etapa'
         .row
           .col-sm-12
-            = step_form_create.submit t('actions.save'), class: 'btn btn-secondary btn-sm'
+            = step_form_create.submit t('actions.save'), class: 'btn btn-secondary btn-sm', id: 'save-new-step'
   .col-lg-6
     %header.jumbotron
       %h6 Criar Tarefa (será adicionada na primeira Etapa do Quadro)

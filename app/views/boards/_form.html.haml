@@ -13,4 +13,4 @@
       =image_tag(board_front_image_url(@board, "200x100"), alt: @board.name)
   .row
     .col-sm-12
-      =f.submit t('actions.save'), class: 'btn btn-secondary btn-sm'
+      =f.submit t('actions.save'), class: 'btn btn-secondary btn-sm', id: 'save-board'
