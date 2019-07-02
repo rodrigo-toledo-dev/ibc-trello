@@ -43,6 +43,7 @@ gem 'bootstrap', '~> 4.3.1'
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 gem 'friendly_id', '~> 5.2.4'
 gem 'font-awesome-sass', '~> 5.8.1'
+gem 'audited', '~> 4.7'
 group :development, :test do
   gem 'rspec-rails', '~> 3.8'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

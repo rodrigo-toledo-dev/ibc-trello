@@ -1,6 +1,8 @@
 class Task < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: :slugged
+  audited
+
   belongs_to :step
   has_one :board, through: :step
   has_many :steps, through: :board
@@ -23,14 +25,12 @@ class Task < ApplicationRecord
     step_ids = self.step_ids
     next_step_id = step_ids[step_ids.find_index(self.step_id) - 1]
     self.update_attribute(:step_id, next_step_id)
-    self.touch
   end
 
   def move_to_the_right
     step_ids = self.step_ids
     next_step_id = step_ids[step_ids.find_index(self.step_id) + 1]
     self.update_attribute(:step_id, next_step_id)
-    self.touch
   end
 
   def try_find_step
