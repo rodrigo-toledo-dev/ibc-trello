@@ -14,21 +14,21 @@ class Task < ApplicationRecord
   before_validation :try_find_step, on: :create
 
   def can_move_left?
-    self.step != self.steps.first
+    self.step != self.board.steps.first
   end
 
   def can_move_right?
-    self.step != self.steps.last
+    self.step != self.board.steps.last
   end
 
   def move_to_the_left
-    step_ids = self.step_ids
+    step_ids = self.board.step_ids
     next_step_id = step_ids[step_ids.find_index(self.step_id) - 1]
     self.update_attribute(:step_id, next_step_id)
   end
 
   def move_to_the_right
-    step_ids = self.step_ids
+    step_ids = self.board.step_ids
     next_step_id = step_ids[step_ids.find_index(self.step_id) + 1]
     self.update_attribute(:step_id, next_step_id)
   end
