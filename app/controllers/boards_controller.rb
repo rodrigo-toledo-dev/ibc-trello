@@ -17,7 +17,7 @@ class BoardsController < ApplicationController
   def show
     @board = Board.friendly.find(params[:id])
     @new_step = @board.steps.build
-    @new_task = Task.new
+    @new_task = Task.new(board_id: @board.id)
   end
 
   def update
