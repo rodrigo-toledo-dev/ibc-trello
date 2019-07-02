@@ -4,4 +4,8 @@ class ApplicationController < ActionController::Base
   def set_search
     @q = Board.order('created_at desc').ransack(params[:q])
   end
+
+  def authenticated_user
+    'IBC-TRELLO-TRACKER'
+  end
 end
