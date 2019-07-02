@@ -13,13 +13,6 @@
             .btn-group
               = step_form_update.submit 'Salvar', class: 'btn btn-secondary btn-sm'
               = link_to 'Remover', step, method: :delete, data: {confirm: 'Deseja avançar com esta operação? Todas as dependências serão removidas.'}, class: 'btn btn-dark btn-sm'
-    - 6.times.each do
-      .card-footer
-        .row
-          = text_field_tag :card_name, Faker::Verb.past, class: 'form-control form-control-sm', placeholder: 'Atividade a ser Feita'
-        .btn-group{"aria-label" => "Ações para #{Faker::Verb.past}", role: "group", style: "margin-top:10px"}
-          =link_to icon('fas', 'caret-square-left'), '#', class: 'btn btn-dark btn-sm'
-          =link_to 'Salvar', '#', class: 'btn btn-secondary btn-sm'
-          =link_to 'Remover', '#', class: 'btn btn-secondary btn-sm'
-          =link_to icon('fas', 'caret-square-right'), '#', class: 'btn btn-dark btn-sm'
+    - step.tasks.each do |task|
+      = render partial: 'tasks/form', locals: {task: task}
 
