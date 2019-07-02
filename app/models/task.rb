@@ -38,7 +38,7 @@ class Task < ApplicationRecord
       step = Step.create(board_id: self.board_id, name: 'To-Do')
       self.step_id = step.id
     else
-      self.step_id = Step.find_by(board_id: self.board_id).id
+      self.step_id = Board.find(self.board_id).steps.first.id
     end
     true
   end
