@@ -6,7 +6,7 @@ class Board < ApplicationRecord
   has_many :steps, dependent: :destroy
   has_many :tasks, through: :steps, dependent: :destroy
 
-  # after_create_commit :insert_in_real_time
+  after_create_commit :insert_in_real_time
 
   def insert_in_real_time
     BoardJob.perform_later(self)
