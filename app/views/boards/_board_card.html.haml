@@ -1,0 +1,10 @@
+%div{class: "col-lg-3 col-md-6 mb-4 board-#{board.slug}"}
+  .card.h-100
+    = board_card_image(board)
+    .card-body
+      %h6.card-title
+        = board.name
+    .card-footer
+      .btn-group{"aria-label" => "Ações para #{board.name}", role: "group"}
+        = link_to t('.informations'), board, class: 'btn btn-secondary btn-sm'
+        = link_to t('.destroy'), board_path(board), method: :delete, data: {confirm: 'Deseja avançar com esta operação? Todas as dependências serão removidas.'}, class: 'btn btn-dark btn-sm'

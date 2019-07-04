@@ -45,6 +45,8 @@ gem 'friendly_id', '~> 5.2.4'
 gem 'font-awesome-sass', '~> 5.8.1'
 gem 'audited', '~> 4.7'
 gem "google-cloud-storage", "~> 1.8", require: false
+gem 'action-cable-testing'
+
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.8'

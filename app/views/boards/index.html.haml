@@ -3,19 +3,10 @@
   %p.lead Você precisa se organizar? Sua empresa, pessoal, estudos? Tarefas nunca ficarão tão em dia...
   = render 'form'
 .row
-  .col-lg-12
-    %h4="#{@boards.count} Quadro(s) encontrado(s)"
+  .col-lg-12.count-of-boards
+    = render partial: 'count_of_boards', locals: {count_of_boards: @boards.count}
 / Page Features
-.row.text-center
+%div{class: "row text-center boards-list #{'is-searching' if params.has_key?(:q)}"}
   - @boards.each do |board|
-    .col-lg-3.col-md-6.mb-4
-      .card.h-100
-        =image_tag(board_front_image_url(board), alt: board.name, class: 'card-img-top')
-        .card-body
-          %h6.card-title
-            = board.name
-        .card-footer
-          .btn-group{"aria-label" => "Ações para #{board.name}", role: "group"}
-            =link_to t('.informations'), board, class: 'btn btn-secondary btn-sm'
-            =link_to t('.destroy'), board_path(board), method: :delete, data: {confirm: 'Deseja avançar com esta operação? Todas as dependências serão removidas.'}, class: 'btn btn-dark btn-sm'
+    = render partial: 'board_card', locals: {board: board}
 
