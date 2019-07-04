@@ -1,0 +1,6 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+board:
+  name: Daily report
+board_with_image:
+  name: Daily report With Board
