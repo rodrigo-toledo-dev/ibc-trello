@@ -22,16 +22,36 @@ class Task < ApplicationRecord
   end
 
   def move_to_the_left
-    step_ids = self.board.step_ids
-    next_step_id = step_ids[step_ids.find_index(self.step_id) - 1]
-    self.update_attribute(:step_id, next_step_id)
+    self.update_attribute(:step_id, previous_step_id)
+
+    action_step = Step.find(previous_step_id)
+    logger.info "======================================"
+    logger.info "Moving to left || task: #{self.inspect} to #{action_step.inspect} in Real TIME"
+    logger.info "======================================"
+    TaskMovimentJob.perform_later(self, action_step)
   end
 
   def move_to_the_right
-    step_ids = self.board.step_ids
-    next_step_id = step_ids[step_ids.find_index(self.step_id) + 1]
     self.update_attribute(:step_id, next_step_id)
+
+    action_step = Step.find(next_step_id)
+    logger.info "======================================"
+    logger.info "Moving to right || task: #{self.inspect} to #{action_step.inspect} in Real TIME"
+    logger.info "======================================"
+    TaskMovimentJob.perform_later(self, action_step)
   end
+
+  def previous_step_id
+    step_ids = self.board.step_ids
+    step_ids[step_ids.find_index(self.step_id) - 1]
+  end
+
+  def next_step_id
+    step_ids = self.board.step_ids
+    step_ids[step_ids.find_index(self.step_id) + 1]
+  end
+
+  protected
 
   def try_find_step
     unless Step.where(board_id: self.board_id).exists?
@@ -41,5 +61,12 @@ class Task < ApplicationRecord
       self.step_id = Board.find(self.board_id).steps.first.id
     end
     true
+  end
+
+  def moviment_in_real_time
+    logger.info "======================================"
+      logger.info "Insert Board in Real TIME #{self.inspect}"
+      logger.info "======================================"
+      BoardJob.perform_later(self)
   end
 end
