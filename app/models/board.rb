@@ -7,9 +7,21 @@ class Board < ApplicationRecord
   has_many :tasks, through: :steps, dependent: :destroy
 
   after_create_commit :insert_in_real_time
+  before_destroy :remove_in_real_time
 
-  def insert_in_real_time
-    BoardJob.perform_later(self)
-  end
+  protected
+    def insert_in_real_time
+      logger.info "======================================"
+      logger.info "Insert Board in Real TIME #{self.inspect}"
+      logger.info "======================================"
+      BoardJob.perform_later(self)
+    end
+
+    def remove_in_real_time
+      logger.info "======================================"
+      logger.info "Remove Board in Real TIME #{self.inspect}"
+      logger.info "======================================"
+      BoardRemoveJob.perform_later(self)
+    end
 
 end

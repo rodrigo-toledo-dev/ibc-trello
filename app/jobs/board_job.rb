@@ -2,7 +2,7 @@ class BoardJob < ApplicationJob
   queue_as :default
 
   def perform(board)
-    ActionCable.server.broadcast 'board_channel', content: render_board(board), slug: board.slug, count_of_boards: render_count_of_boards
+    ActionCable.server.broadcast 'board_channel', content: render_board(board), slug: board.slug, count_of_boards: render_count_of_boards, action: 'add-board'
   end
 
   private
