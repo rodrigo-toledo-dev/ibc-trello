@@ -12,6 +12,8 @@ class BoardsControllerTest < ActionController::TestCase
 
   class IndexContext < BoardsControllerTest
     class FilterContext < IndexContext
+      include AssertJson
+
       test 'without filter' do
         get :index
         assert_response :success
@@ -19,9 +21,33 @@ class BoardsControllerTest < ActionController::TestCase
         assert_equal Board.joins(:front_image_attachment).count, 1
       end
 
+      test 'without filter API' do
+        get :index, format: :json
+        assert_response :success
+        assert_json(@response.body) do
+          has 'board'
+          has 'boards' do
+            has 'name', 'Daily report With Board'
+            has 'name', 'Daily report'
+          end
+        end
+      end
+
       test 'with filter' do
         get :index, params: {q: {name_cont: 'With Board'}}
         assert_response :success
+      end
+
+      test 'with filter API' do
+        get :index, format: :json, params: {q: {name_cont: 'With Board'}}
+        assert_response :success
+        assert_json(@response.body) do
+          has 'board'
+          has 'boards' do
+            has 'name', 'Daily report With Board'
+            has_not 'name', 'Daily report'
+          end
+        end
       end
 
       class EditContext < FilterContext

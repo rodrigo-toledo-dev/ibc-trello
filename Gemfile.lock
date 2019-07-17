@@ -60,6 +60,8 @@ GEM
     addressable (2.6.0)
       public_suffix (>= 2.0.2, < 4.0)
     arel (9.0.0)
+    assert_json (0.4.1)
+      activesupport
     ast (2.4.0)
     audited (4.8.0)
       activerecord (>= 4.0, < 5.3)
@@ -456,6 +458,7 @@ PLATFORMS
 
 DEPENDENCIES
   action-cable-testing
+  assert_json
   audited (~> 4.7)
   bootsnap (>= 1.1.0)
   bootstrap (~> 4.3.1)

@@ -2,6 +2,10 @@ class BoardsController < ApplicationController
   def index
     @boards = @q.result(distinct: true)
     @board = params[:id].blank? ? Board.new : Board.friendly.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.json { render json: { boards: @boards, board: @board }, status: :ok }
+    end
   end
 
   def create
