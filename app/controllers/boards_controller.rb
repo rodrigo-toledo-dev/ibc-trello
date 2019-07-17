@@ -4,7 +4,7 @@ class BoardsController < ApplicationController
     @board = params[:id].blank? ? Board.new : Board.friendly.find(params[:id])
     respond_to do |format|
       format.html
-      format.json { render json: { boards: @boards, board: @board }, status: :ok }
+      format.json
     end
   end
 

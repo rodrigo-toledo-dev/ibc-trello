@@ -3,6 +3,10 @@ module BoardsHelper
     board.front_image.attached? ? board.front_image.variant(resize: resize) : "http://placehold.it/#{resize}"
   end
 
+  def board_front_image_filename(board)
+    board.front_image.filename if board.front_image.attached?
+  end
+
   def board_card_image(board)
     image = image_tag(board_front_image_url(board), alt: board.name, class: 'card-img-top')
     if Rails.env.development?
