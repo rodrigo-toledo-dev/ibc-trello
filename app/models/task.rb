@@ -24,21 +24,21 @@ class Task < ApplicationRecord
   def move_to_the_left
     self.update_attribute(:step_id, previous_step_id)
 
-    action_step = Step.find(previous_step_id)
-    logger.info "======================================"
-    logger.info "Moving to left || task: #{self.inspect} to #{action_step.inspect} in Real TIME"
-    logger.info "======================================"
-    TaskMovimentJob.perform_later(self, action_step)
+    # action_step = Step.find(previous_step_id)
+    # logger.info "======================================"
+    # logger.info "Moving to left || task: #{self.inspect} to #{action_step.inspect} in Real TIME"
+    # logger.info "======================================"
+    # TaskMovimentJob.perform_later(self, action_step)
   end
 
   def move_to_the_right
     self.update_attribute(:step_id, next_step_id)
 
-    action_step = Step.find(next_step_id)
-    logger.info "======================================"
-    logger.info "Moving to right || task: #{self.inspect} to #{action_step.inspect} in Real TIME"
-    logger.info "======================================"
-    TaskMovimentJob.perform_later(self, action_step)
+    # action_step = Step.find(next_step_id)
+    # logger.info "======================================"
+    # logger.info "Moving to right || task: #{self.inspect} to #{action_step.inspect} in Real TIME"
+    # logger.info "======================================"
+    # TaskMovimentJob.perform_later(self, action_step)
   end
 
   def previous_step_id
